@@ -16,15 +16,20 @@ class World_Map():
     def __str__(self):
         rep = "World Map:"
         return rep
+    
+    def get_size(self):
+        world_size = {"x": self.xlim, "y": self.ylim, "z": self.zlim}
+        return world_size
 
 class Tile():
     """Creates tiles to fill the world map"""
 
     #Constructor
-    def __init__(self, x, y, z):
+    def __init__(self, x, y, z, size):
         self.x = x
         self.y = y
         self.z = z
+        self.size = size
     
     def __str__(self):
         rep = "This is a tile with location [x, y, z]:" + "[" + str(self.x) + ", " + str(self.y) + ", " + str(self.z) + "]"
@@ -72,4 +77,26 @@ class NPC(Living_Object):
 
 #main
 
+## Initiate game window
+pygame.init()
 
+if(World_Map.world_map_exists == False): #create new game world when none exists
+    game_world = World_Map(xlim = 1000, ylim = 1000)
+
+Window = pygame.display.set_mode((game_world.get_size()["x"], game_world.get_size()["y"]))
+pygame.display.set_caption("TestWorld")
+
+
+## Set-up game loop
+
+tdel = 20 #delay (in msec)
+
+run = True
+
+while run:
+    pygame.time.delay(tdel)
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            run = False
+
+pygame.quit()
