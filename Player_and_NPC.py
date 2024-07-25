@@ -35,6 +35,14 @@ class Tile():
         rep = "This is a tile with location [x, y, z]:" + "[" + str(self.x) + ", " + str(self.y) + ", " + str(self.z) + "]"
         return(rep)
     
+class Ground_tile(Tile):
+    """Creates a tile of ground"""
+    def __init__(self, x, y, z, size, image):
+        super().__init__(x, y, z, size)
+        self.image = image
+
+
+#-------------------------------------------------------------------------------------------------------------------------------#    
 class Living_Object():
     """This class is a parent for npcs and playable characters"""
     
@@ -75,6 +83,7 @@ class NPC(Living_Object):
         self.name = name
         NPC.count_NPC +=1 #increase count of NPC's by 1 when a new NPC is constructed
 
+#------------------------------------------------------------------------------------------------------------------------------------------#
 #main
 
 ## Initiate game window
