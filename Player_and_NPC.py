@@ -1,6 +1,6 @@
 # imports
 
-import pygame
+import pygame as pg
 import random
 
 class World_Map():
@@ -70,6 +70,7 @@ class Player_character(Living_Object):
     def __init__(self, x, y, z, name, image):
         super().__init__(x, y, z)
         self.name = name
+        #self.image = 
 
 class NPC(Living_Object):
     """This class inherits from Living_Object and is computer controlled"""
@@ -87,13 +88,15 @@ class NPC(Living_Object):
 #main
 
 ## Initiate game window
-pygame.init()
+
+if(pg.get_init == False):
+    pg.init()
 
 if(World_Map.world_map_exists == False): #create new game world when none exists
     game_world = World_Map(xlim = 1000, ylim = 1000)
 
-Window = pygame.display.set_mode((game_world.get_size()["x"], game_world.get_size()["y"]))
-pygame.display.set_caption("TestWorld")
+Window = pg.display.set_mode((game_world.get_size()["x"], game_world.get_size()["y"]))
+pg.display.set_caption("TestWorld")
 
 
 ## Set-up game loop
@@ -103,9 +106,9 @@ tdel = 20 #delay (in msec)
 run = True
 
 while run:
-    pygame.time.delay(tdel)
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
+    pg.time.delay(tdel)
+    for event in pg.event.get():
+        if event.type == pg.QUIT:
             run = False
 
-pygame.quit()
+pg.quit()
