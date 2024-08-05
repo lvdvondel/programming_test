@@ -48,7 +48,7 @@ class Living_Object():
     
     #constructor
     def __init__(self, image, x, y, z):
-        self.image = image
+        self.image = pg.rect(x, y, 20, 20)
         self.x = x
         self.y = y
         self.z = z
@@ -101,7 +101,8 @@ pg.display.set_caption("TestWorld")
 
 ## Set-up game loop
 
-tdel = 20 #delay (in msec)
+fps = 60
+tdel = int(round(1000/fps)) #delay (in msec) as calculated from fps 
 
 run = True
 
@@ -110,5 +111,7 @@ while run:
     for event in pg.event.get():
         if event.type == pg.QUIT:
             run = False
+        #if event.type(pg.key.get_pressed("s")):
+
 
 pg.quit()
